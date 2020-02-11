@@ -1,2 +1,2 @@
-# recipe-app-api
-Recipe app api source code
+# rent-app-api
+Rental app api source code
