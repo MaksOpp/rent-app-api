@@ -6,6 +6,7 @@ from offer import views
 
 router = DefaultRouter()
 router.register('tags', views.TagViewSet)
+router.register('offers', views.OfferViewSet)
 
 app_name = 'offer'
 

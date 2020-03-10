@@ -2,7 +2,7 @@ from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from core.models import Tag
+from core.models import Tag, Offer
 
 from offer import serializers
 
@@ -23,3 +23,15 @@ class TagViewSet(viewsets.GenericViewSet,
     def perform_create(self, serializer):
         """Create a new ingredient"""
         serializer.save(user=self.request.user)
+
+
+class OfferViewSet(viewsets.ModelViewSet):
+    """Manage offers in the database"""
+    serializer_class = serializers.OfferSerializer
+    queryset = Offer.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        """Retrieve the offers for the authenticated user"""
+        return self.queryset.filter(user=self.request.user)

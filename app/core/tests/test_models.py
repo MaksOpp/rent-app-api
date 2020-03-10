@@ -56,3 +56,17 @@ class ModelTests(TestCase):
         )
 
         self.assertEqual(str(tag), tag.name)
+
+    def test_offer_str(self):
+        """Test the offer string representation"""
+        offer = models.Offer.objects.create(
+            user=sample_user(),
+            title='PS4',
+            description='Nice console, great deal!',
+            min_players=5,
+            max_players=10,
+            price_per_day=5.00,
+            is_highlighted=False
+        )
+
+        self.assertEqual(str(offer), offer.title)
